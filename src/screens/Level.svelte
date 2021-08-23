@@ -40,7 +40,6 @@
         if (time > $records[$currentLevel]) {
           $records[$currentLevel] = time;
         }
-        console.log("save result");
       }
     }
   }
