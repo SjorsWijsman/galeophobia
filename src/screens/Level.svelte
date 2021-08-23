@@ -1,5 +1,10 @@
 <script>
-  import { currentLevel, levelCompleted, dayLastCompleted } from "../store.js";
+  import {
+    currentLevel,
+    levelCompleted,
+    dayLastCompleted,
+    records,
+  } from "../store.js";
   import { dayOfYear } from "../time.js";
   // States = blurred, visible, result, reward
   const states = ["blurred", "visible", "result", "reward"];
@@ -27,9 +32,13 @@
       $currentLevel = 0;
     } else {
       state = states[stateIndex + 1];
+      // Save result
       if (state === "result") {
         if ($currentLevel > $levelCompleted) {
           $dayLastCompleted = dayOfYear();
+        }
+        if (time > $records[$currentLevel]) {
+          $records[$currentLevel] = time;
         }
         console.log("save result");
       }
@@ -56,9 +65,17 @@
   <main>
     <h1>{$currentLevel}</h1>
     <section>
+      {#if state === "blurred"}
+        <p>
+          <span>Niveau {Math.ceil($currentLevel / 5)}</span>
+          Record:
+          <br />
+          {$records[$currentLevel]}s
+        </p>
+      {/if}
       <img
         class:blurred={state === "blurred"}
-        src="https://images.theconversation.com/files/69854/original/image-20150123-2197-4ya00s.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
+        src="./sharks/{$currentLevel}.png"
         alt="Haai"
       />
     </section>
@@ -77,11 +94,7 @@
   <main>
     <h1>Je beloning!</h1>
     <section>
-      <img
-        class:blurred={state === "blurred"}
-        src="https://images.theconversation.com/files/69854/original/image-20150123-2197-4ya00s.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
-        alt="Haai"
-      />
+      <img class:blurred={state === "blurred"} src="" alt="Haai" />
     </section>
   </main>
 {/if}
@@ -141,7 +154,7 @@
     background: linear-gradient(to bottom, #557eed, #2a3d72);
   }
 
-  main img {
+  main section img {
     display: block;
     width: 100%;
     height: 100%;
@@ -149,12 +162,27 @@
     transition: filter 1s;
   }
 
-  main img.blurred {
+  main section img.blurred {
     filter: blur(4rem);
+  }
+
+  main section p {
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   main p {
     font-size: 1.8rem;
+  }
+
+  main p span {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 2rem;
   }
 
   footer {
