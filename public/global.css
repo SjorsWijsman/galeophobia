@@ -1,0 +1,55 @@
+html {
+  font-size: calc(60% + 0.8vmin);
+	min-height: 100%;
+	background: linear-gradient(to bottom, #557EED, #2A3D72);
+	background-size: cover;
+	background-repeat: no-repeat;
+  --font-family-text: 'Ubuntu', sans-serif;
+  --font-family-headers: 'Signika', sans-serif;
+	padding: 2rem;
+}
+
+* {
+  font-size: 1.5rem;
+	color: white;
+	font-family: var(--font-family-text);
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	background-color: #557EED;
+}
+
+h1 {
+  font-size: 3rem;
+	font-family: var(--font-family-headers);
+	font-weight: normal;
+	margin-top: .6em;
+}
+
+h2 {
+  font-size: 1.6rem;
+	font-family: var(--font-family-headers);
+	font-weight: normal;
+}
+
+h3 {
+  font-size: 1.3rem;
+	font-family: var(--font-family-headers);
+	font-weight: normal;
+}
+
+h1, h2, h3, p {
+	margin-bottom: 1em;
+	text-shadow: 0 0.2rem 0.7rem rgba(10, 4, 39, 0.123);
+}
+
+main,
+header,
+footer {
+	max-width: 26rem;
+	margin: 0 auto;
+	text-align: center;
+}
