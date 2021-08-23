@@ -28,7 +28,6 @@
     const stateIndex = states.indexOf(state);
     // Go back to overview
     if (state === "reward") {
-      $levelCompleted = $currentLevel;
       $currentLevel = 0;
     } else {
       state = states[stateIndex + 1];
@@ -36,6 +35,7 @@
       if (state === "result") {
         if ($currentLevel > $levelCompleted) {
           $dayLastCompleted = dayOfYear();
+          $levelCompleted = $currentLevel;
         }
         if (time > $records[$currentLevel]) {
           $records[$currentLevel] = time;
@@ -84,10 +84,22 @@
   <main>
     <h1>Ez pz bbq.</h1>
     <p>
-      Je hebt de haai voor {time} seconden bekeken. Goed gedaan! Ik ben trots op
-      je :)
+      Je hebt de haai voor {time} seconden bekeken.
+      {[
+        "Goed gedaan! Ik ben trots op je :)",
+        "Lekker bezig meid.",
+        "Haaien zullen voortaan bang zijn voor jou!",
+      ][Math.floor(Math.random() * 3)]}
     </p>
-    <p>Je bent klaar voor vandaag. Morgen is het tijd voor een nieuwe haai!</p>
+    {#if $currentLevel === 5}
+      <p>Je hebt dit niveau gehaald! Morgen begin je met een nieuw niveau.</p>
+    {:else if $currentLevel === 30}
+      <p>Je hebt alle levels gehaald! Zieke shit.</p>
+    {:else}
+      <p>
+        Je bent klaar voor vandaag. Morgen is het tijd voor een nieuwe haai!
+      </p>
+    {/if}
   </main>
 {:else if state === "reward"}
   <main>
@@ -101,7 +113,11 @@
   {#if state === "blurred"}
     <button on:click={() => next()}>Bekijken</button>
   {:else if state === "visible"}
-    <button on:click={() => next()}>Genoeg gehad</button>
+    <button on:click={() => next()}
+      >{["Genoeg gehad", "Mooi geweest", "Kut beest", "Optyfen"][
+        Math.floor(Math.random() * 4)
+      ]}</button
+    >
   {:else if state === "result"}
     <button on:click={() => next()}>Verder</button>
   {:else if state === "reward"}

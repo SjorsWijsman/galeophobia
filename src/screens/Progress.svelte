@@ -13,7 +13,7 @@
 </main>
 <footer>
   <p>{$levelCompleted}/30</p>
-  {#if $levelCompleted === $levelUnlocked}
+  {#if $levelCompleted === $levelUnlocked && $levelUnlocked !== 30}
     <p>Volgend level over: {hoursTillNextDay()}u</p>
   {/if}
 </footer>
