@@ -5,9 +5,13 @@ const CACHE_NAME = 'static-cache-v1';
 
 // Add list of files to cache here.
 const FILES_TO_CACHE = [
-  '/offline.html',
-  '/global.css'
+  './offline.html',
+  './global.css',
 ];
+
+for (let index = 1; index <= 30; index++) {
+  FILES_TO_CACHE.push(`./sharks/${index}.png`)
+}
 
 self.addEventListener('install', (evt) => {
   console.log('[ServiceWorker] Install');
