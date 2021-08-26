@@ -13,7 +13,7 @@ export const persistStore = (key, initial) => {
   return store
 } 
 
-export const levelUnlocked = persistStore('levelUnlocked', 30)
+export const levelUnlocked = persistStore('levelUnlocked', 1)
 export const levelCompleted = persistStore('levelCompleted', 0)
 export const currentLevel = persistStore('currentLevel', 0)
 export const dayLastCompleted = persistStore('dayLastCompleted', null)

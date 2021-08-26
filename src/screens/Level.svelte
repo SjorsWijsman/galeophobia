@@ -87,7 +87,7 @@
       Je hebt de haai voor {time} seconden bekeken.
       {[
         "Goed gedaan! Ik ben trots op je :)",
-        "Lekker bezig meid.",
+        "Lekker bezig.",
         "Haaien zullen voortaan bang zijn voor jou!",
       ][Math.floor(Math.random() * 3)]}
     </p>
@@ -105,7 +105,10 @@
   <main>
     <h1>Je beloning!</h1>
     <section>
-      <img class:blurred={state === "blurred"} src="" alt="Haai" />
+      <img
+        src="https://source.unsplash.com/random/900×700/?puppy"
+        alt="Beest"
+      />
     </section>
   </main>
 {/if}
@@ -114,8 +117,8 @@
     <button on:click={() => next()}>Bekijken</button>
   {:else if state === "visible"}
     <button on:click={() => next()}
-      >{["Genoeg gehad", "Mooi geweest", "Kut beest", "Optyfen"][
-        Math.floor(Math.random() * 4)
+      >{["Genoeg gehad", "Kut beest", "Optyfen"][
+        Math.floor(Math.random() * 3)
       ]}</button
     >
   {:else if state === "result"}

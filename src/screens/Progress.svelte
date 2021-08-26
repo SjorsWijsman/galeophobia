@@ -13,7 +13,9 @@
 </main>
 <footer>
   <p>{$levelCompleted}/30</p>
-  {#if $levelCompleted === $levelUnlocked && $levelUnlocked !== 30}
+  {#if $levelCompleted === 30}
+    <p>Je hebt alle levels gehaald!</p>
+  {:else if $levelCompleted === $levelUnlocked && $levelUnlocked !== 30}
     <p>Volgend level over: {hoursTillNextDay()}u</p>
   {/if}
 </footer>

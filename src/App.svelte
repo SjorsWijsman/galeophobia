@@ -1,7 +1,6 @@
 <script>
   import Progress from "./screens/Progress.svelte";
   import Level from "./screens/Level.svelte";
-
   import {
     currentLevel,
     levelUnlocked,
