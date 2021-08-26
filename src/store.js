@@ -13,8 +13,8 @@ export const persistStore = (key, initial) => {
   return store
 } 
 
-export const levelUnlocked = persistStore('levelUnlocked', 1)
-export const levelCompleted = persistStore('levelCompleted', 0)
-export const currentLevel = persistStore('currentLevel', 0)
-export const dayLastCompleted = persistStore('dayLastCompleted', null)
-export const records = persistStore('records', {})
+export const levelUnlocked = persistStore('haai-levelUnlocked', 1)
+export const levelCompleted = persistStore('haai-levelCompleted', 0)
+export const currentLevel = persistStore('haai-currentLevel', 0)
+export const dayLastCompleted = persistStore('haai-dayLastCompleted', null)
+export const records = persistStore('haai-records', {})

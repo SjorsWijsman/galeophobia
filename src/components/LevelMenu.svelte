@@ -78,7 +78,7 @@
     right: 0;
     bottom: 0;
     transform: translate(20%, 20%);
-    content: "✔";
+    content: "\2714 \fe0e";
   }
 
   button:disabled {
