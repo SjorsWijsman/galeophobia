@@ -1,10 +1,5 @@
 <script>
-  import {
-    currentLevel,
-    levelCompleted,
-    dayLastCompleted,
-    records,
-  } from "../store.js";
+  import { currentLevel, levelCompleted, dayLastCompleted, records } from "../store.js";
   import { dayOfYear } from "../time.js";
   // States = blurred, visible, result, reward
   const states = ["blurred", "visible", "result", "reward"];
@@ -72,11 +67,7 @@
           {$records[$currentLevel]}s
         </p>
       {/if}
-      <img
-        class:blurred={state === "blurred"}
-        src="./sharks/{$currentLevel}.png"
-        alt="Haai"
-      />
+      <img class:blurred={state === "blurred"} src="./sharks/{$currentLevel}.png" alt="Haai" />
     </section>
     <p>{time}s</p>
   </main>
@@ -85,30 +76,21 @@
     <h1>Ez pz bbq.</h1>
     <p>
       Je hebt de haai voor {time} seconden bekeken.
-      {[
-        "Goed gedaan! Ik ben trots op je :)",
-        "Lekker bezig.",
-        "Haaien zullen voortaan bang zijn voor jou!",
-      ][Math.floor(Math.random() * 3)]}
+      {["Goed gedaan! Ik ben trots op je :)", "Lekker bezig.", "Haaien zullen voortaan bang zijn voor jou!"][Math.floor(Math.random() * 3)]}
     </p>
     {#if $currentLevel === 5}
       <p>Je hebt dit niveau gehaald! Morgen begin je met een nieuw niveau.</p>
     {:else if $currentLevel === 30}
       <p>Je hebt alle levels gehaald! Zieke shit.</p>
     {:else}
-      <p>
-        Je bent klaar voor vandaag. Morgen is het tijd voor een nieuwe haai!
-      </p>
+      <p>Je bent klaar voor vandaag. Morgen is het tijd voor een nieuwe haai!</p>
     {/if}
   </main>
 {:else if state === "reward"}
   <main>
     <h1>Je beloning!</h1>
     <section>
-      <img
-        src="https://source.unsplash.com/random/900×700/?puppy"
-        alt="Beest"
-      />
+      <img src="https://source.unsplash.com/random/900×700/?puppy" alt="Beest" />
     </section>
   </main>
 {/if}
@@ -116,11 +98,7 @@
   {#if state === "blurred"}
     <button on:click={() => next()}>Bekijken</button>
   {:else if state === "visible"}
-    <button on:click={() => next()}
-      >{["Genoeg gehad", "Kut beest", "Optyfen"][
-        Math.floor(Math.random() * 3)
-      ]}</button
-    >
+    <button on:click={() => next()}>{["Genoeg gehad", "Kut beest", "Optyfen"][Math.floor(Math.random() * 3)]}</button>
   {:else if state === "result"}
     <button on:click={() => next()}>Verder</button>
   {:else if state === "reward"}
