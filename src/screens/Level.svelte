@@ -5,6 +5,18 @@
   const states = ["blurred", "visible", "result", "reward"];
   let state = "blurred";
   let time = 0;
+  let puppyUrl = "";
+
+  async function loadPuppy() {
+    puppyUrl = "";
+    try {
+      const res = await fetch("https://dog.ceo/api/breeds/image/random");
+      const data = await res.json();
+      puppyUrl = data.message;
+    } catch (e) {
+      puppyUrl = "";
+    }
+  }
 
   function back() {
     const stateIndex = states.indexOf(state);
@@ -26,6 +38,9 @@
       $currentLevel = 0;
     } else {
       state = states[stateIndex + 1];
+      if (state === "reward") {
+        loadPuppy();
+      }
       // Save result
       if (state === "result") {
         if ($currentLevel > $levelCompleted) {
@@ -90,7 +105,9 @@
   <main>
     <h1>Je beloning!</h1>
     <section>
-      <img src="https://source.unsplash.com/random/900×700/?puppy" alt="Beest" />
+      {#if puppyUrl}
+        <img src={puppyUrl} alt="Beest" />
+      {/if}
     </section>
   </main>
 {/if}

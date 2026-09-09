@@ -1,8 +1,15 @@
 <script>
   import LevelMenu from "../components/LevelMenu.svelte";
 
-  import { levelCompleted, levelUnlocked } from "../store.js";
-  import { hoursTillNextDay } from "../time";
+  import { levelCompleted, levelUnlocked, dayLastCompleted } from "../store.js";
+  import { hoursTillNextDay, dayOfYear } from "../time";
+
+  function skipDay() {
+    if ($levelUnlocked < 30) {
+      $levelUnlocked++;
+      $dayLastCompleted = dayOfYear();
+    }
+  }
 </script>
 
 <header>
@@ -17,5 +24,18 @@
     <p>Je hebt alle levels gehaald!</p>
   {:else if $levelCompleted === $levelUnlocked && $levelUnlocked !== 30}
     <p>Volgend level over: {hoursTillNextDay()}u</p>
+    <button class="skip" on:click={() => skipDay()}>Naar volgende dag</button>
   {/if}
 </footer>
+
+<style>
+  button.skip {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 1.4rem;
+    opacity: 0.7;
+  }
+</style>
